@@ -1,9 +1,10 @@
 package com.example.archv1.presentation.viewModel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
+import com.example.archv1.data.model.Album
 import com.example.archv1.data.model.ResponseResult
 import com.example.archv1.data.repository.AlbumRepository
+import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 import java.lang.Exception
@@ -11,16 +12,27 @@ import java.lang.Exception
 class AlbumViewModel : ViewModel() {
 
     private val albumsRepository = AlbumRepository()
+
+    private val _album = MutableLiveData<Album>()
+    val album: LiveData<Album>
+        get() = _album
+
     private var responseResult = ResponseResult()
 
     fun getIsUpdating() = responseResult
 
-    /** Retrofit has its own custom dispatchers **/
-    val album = liveData {
-        val receivedAlbum = albumsRepository.getAlbum(5)
-        emit(receivedAlbum)
+    fun loadAlbum(albumId: Int) {
+        viewModelScope.launch {
+            try {
+                val result = albumsRepository.getAlbum(albumId)
+                _album.postValue(result)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
+    /** Retrofit has its own custom dispatchers **/
     fun getSingleAlbum(albumId: Int) = liveData {
         val receivedAlbum = albumsRepository.getAlbum(albumId)
         emit(receivedAlbum)
