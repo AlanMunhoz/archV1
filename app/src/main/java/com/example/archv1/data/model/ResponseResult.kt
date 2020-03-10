@@ -1,8 +1,6 @@
 package com.example.archv1.data.model
 
-import androidx.lifecycle.MutableLiveData
-
-data class ResponseResult (
-    var isUpdating : MutableLiveData<Boolean> = MutableLiveData(),
-    var messageResult: MutableLiveData<String> = MutableLiveData()
-)
+sealed class ResponseResult<out T: Any> {
+    data class Success<out T : Any>(val data: T) : ResponseResult<T>()
+    data class Failure(val message: String) : ResponseResult<Nothing>()
+}

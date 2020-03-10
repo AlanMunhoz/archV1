@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.archv1.R
+import com.example.archv1.data.model.ResponseResult
 import com.example.archv1.databinding.ActivityMainBinding
 import com.example.archv1.presentation.viewModel.AlbumViewModel
 
@@ -24,18 +25,11 @@ class MainActivity : AppCompatActivity() {
         viewBinding.viewModel = viewModel
         viewBinding.lifecycleOwner = this
 
-        //viewBinding.button.setOnClickListener {
-            //viewModel.getSingleAlbumResponse(viewBinding.editText.text.toString().toInt()).observe(this, Observer { response ->
-                //mActivityMainBinding.textView.text = response.body()?.title
-            //})
-        //}
-
-        viewModel.getIsUpdating().isUpdating.observe(this, Observer {  isUpdating ->
-            viewBinding.progressBar.visibility = if(isUpdating) View.VISIBLE else View.GONE
-        })
-
-        viewModel.getIsUpdating().messageResult.observe(this, Observer { message ->
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        viewModel.album2.observe(this, Observer { responseResult ->
+            when(responseResult) {
+                is ResponseResult.Success -> viewBinding.textView1.text = "${responseResult.data.title} (${viewModel.getCurrentPage()})"
+                is ResponseResult.Failure -> Toast.makeText(this, responseResult.message, Toast.LENGTH_SHORT).show()
+            }
         })
 
     }
