@@ -8,7 +8,7 @@ import java.lang.Exception
 
 class AlbumViewModel(private val albumsRepository: AlbumRepository) : ViewModel() {
 
-    private var page: Int = 1
+    private var page: Int = 0
     fun getPage() = page
 
     private val _requestInProgress = MutableLiveData<Boolean>()
