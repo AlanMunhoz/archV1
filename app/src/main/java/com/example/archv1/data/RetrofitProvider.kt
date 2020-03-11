@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitProvider {
 
-    companion object Factory {
+    companion object Provider {
 
         private const val BASE_URL = "https://jsonplaceholder.typicode.com"
         private const val CONNECT_TIMEOUT = 5000L
