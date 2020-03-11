@@ -6,12 +6,10 @@ import com.example.archv1.data.repository.AlbumRepository
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class AlbumViewModel : ViewModel() {
+class AlbumViewModel(private val albumsRepository: AlbumRepository) : ViewModel() {
 
-    private val albumsRepository = AlbumRepository()
-
-    private var currentPage: Int = 1
-    fun getCurrentPage() = currentPage
+    private var page: Int = 1
+    fun getPage() = page
 
     private val _requestInProgress = MutableLiveData<Boolean>()
     val requestInProgress: LiveData<Boolean>
@@ -31,7 +29,7 @@ class AlbumViewModel : ViewModel() {
                 } ?: run {
                     _album.postValue(ResponseResult.Failure("HttpCode: ${response.code()}"))
                 }
-                currentPage++
+                page++
             } catch (e: Exception) {
                 _album.postValue(ResponseResult.Failure("ExceptionMessage: ${e.message}"))
                 e.printStackTrace()
