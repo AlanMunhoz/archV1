@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.album2.observe(this, Observer { responseResult ->
             when (responseResult) {
-                is ResponseResult.Success -> showResult(responseResult.data.title, viewModel.getPage())
+                is ResponseResult.Success -> showResult(responseResult.data.title, responseResult.data.id)
                 is ResponseResult.Failure -> showError(responseResult.message)
             }
         })

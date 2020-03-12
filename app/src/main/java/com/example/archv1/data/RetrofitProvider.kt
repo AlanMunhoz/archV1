@@ -34,11 +34,13 @@ class RetrofitProvider {
             return httpClient
         }
 
-        fun provideAlbumService(httpClient: OkHttpClient.Builder) : AlbumService = Retrofit.Builder()
+        fun providePlaceHolderApi(httpClient: OkHttpClient.Builder) : Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .client(httpClient.build())
             .build()
+
+        fun provideAlbumService(retrofit: Retrofit) : AlbumService = retrofit
             .create(AlbumService::class.java)
     }
 }
