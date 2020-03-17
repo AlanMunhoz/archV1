@@ -1,4 +1,4 @@
-package com.example.archv1.data
+package com.example.archv1.data.network
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -26,9 +26,18 @@ class RetrofitProvider {
         fun provideHttpClient(loggingInterceptor : HttpLoggingInterceptor) : OkHttpClient.Builder {
             val httpClient = OkHttpClient.Builder()
             httpClient.apply {
-                connectTimeout(CONNECT_TIMEOUT, TIME_UNIT)
-                readTimeout(READ_TIMEOUT, TIME_UNIT)
-                writeTimeout(WRITE_TIMEOUT, TIME_UNIT)
+                connectTimeout(
+                    CONNECT_TIMEOUT,
+                    TIME_UNIT
+                )
+                readTimeout(
+                    READ_TIMEOUT,
+                    TIME_UNIT
+                )
+                writeTimeout(
+                    WRITE_TIMEOUT,
+                    TIME_UNIT
+                )
                 addInterceptor(loggingInterceptor)
             }
             return httpClient

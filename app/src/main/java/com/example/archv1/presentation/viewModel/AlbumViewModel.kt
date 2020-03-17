@@ -1,7 +1,8 @@
 package com.example.archv1.presentation.viewModel
 
 import androidx.lifecycle.*
-import com.example.archv1.data.model.*
+import com.example.archv1.domain.model.Album
+import com.example.archv1.domain.model.ResponseResult
 import com.example.archv1.domain.usecase.GetAlbum
 import com.example.archv1.domain.usecase.GetAlbumResponse
 import kotlinx.coroutines.launch
@@ -20,19 +21,14 @@ class AlbumViewModel(
         get() = _requestInProgress
 
     private val _album = MutableLiveData<ResponseResult<Album>>()
-    val album2: LiveData<ResponseResult<Album>>
+    val album: LiveData<ResponseResult<Album>>
         get() = _album
 
     fun loadAlbum(albumId: Int) {
         viewModelScope.launch {
             try {
                 _requestInProgress.postValue(true)
-                val response = getAlbumResponse(albumId)
-                response.body()?.let {
-                    _album.postValue(ResponseResult.Success(it))
-                } ?: run {
-                    _album.postValue(ResponseResult.Failure("HttpCode: ${response.code()}"))
-                }
+                _album.postValue(getAlbumResponse(albumId))
                 page++
             } catch (e: Exception) {
                 _album.postValue(ResponseResult.Failure("ExceptionMessage: ${e.message}"))

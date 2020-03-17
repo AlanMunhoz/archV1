@@ -1,9 +1,9 @@
 package com.example.archv1.di
 
-import com.example.archv1.data.RetrofitProvider.Provider.provideAlbumService
-import com.example.archv1.data.RetrofitProvider.Provider.provideHttpClient
-import com.example.archv1.data.RetrofitProvider.Provider.provideLoginInterceptor
-import com.example.archv1.data.RetrofitProvider.Provider.providePlaceHolderApi
+import com.example.archv1.data.network.RetrofitProvider.Provider.provideAlbumService
+import com.example.archv1.data.network.RetrofitProvider.Provider.provideHttpClient
+import com.example.archv1.data.network.RetrofitProvider.Provider.provideLoginInterceptor
+import com.example.archv1.data.network.RetrofitProvider.Provider.providePlaceHolderApi
 import com.example.archv1.data.repository.AlbumRepositoryImpl
 import com.example.archv1.domain.repository.AlbumRepository
 import com.example.archv1.presentation.viewModel.AlbumViewModel

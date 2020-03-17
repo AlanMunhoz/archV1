@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.archv1.R
-import com.example.archv1.data.model.ResponseResult
+import com.example.archv1.domain.model.ResponseResult
 import com.example.archv1.databinding.ActivityMainBinding
 import com.example.archv1.presentation.viewModel.AlbumViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         viewBinding.viewModel = viewModel
         viewBinding.lifecycleOwner = this
 
-        viewModel.album2.observe(this, Observer { responseResult ->
+        viewModel.album.observe(this, Observer { responseResult ->
             when (responseResult) {
                 is ResponseResult.Success -> showResult(responseResult.data.title, responseResult.data.id)
                 is ResponseResult.Failure -> showError(responseResult.message)

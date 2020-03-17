@@ -1,6 +1,6 @@
-package com.example.archv1.data
+package com.example.archv1.data.network
 
-import com.example.archv1.data.model.Album
+import com.example.archv1.domain.model.Album
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
