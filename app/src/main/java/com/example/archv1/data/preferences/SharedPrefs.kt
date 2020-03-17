@@ -2,12 +2,11 @@ package com.example.archv1.data.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.archv1.data.util.getContext
 import com.example.archv1.domain.model.Album
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class SharedPrefs {
+class SharedPrefs(private val mContext: Context?) {
 
     companion object AccessKey {
         private const val FILE_ALBUM_LIST = "file_album_list"
@@ -32,7 +31,8 @@ class SharedPrefs {
     }
 
     fun saveAlbum(album: Album) {
-        getContext()?.let { context ->
+//        getContext()?.let { context ->
+        mContext?.let { context ->
             restoreAlbumList(context)?.let { list ->
                 if(list.firstOrNull { it.id == album.id } == null) {
                     list.add(album)
@@ -45,7 +45,8 @@ class SharedPrefs {
     }
 
     fun getAlbum(albumId: Int): Album? {
-        return getContext()?.let { context ->
+//        return getContext()?.let { context ->
+        return mContext?.let { context ->
             restoreAlbumList(context)?.let { list ->
                 list.firstOrNull { it.id == albumId }
             }
