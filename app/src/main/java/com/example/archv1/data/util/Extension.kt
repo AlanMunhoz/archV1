@@ -1,5 +1,7 @@
 package com.example.archv1.data.util
 
+import com.example.archv1.MainApplication
+import com.example.archv1.data.preferences.SharedPrefs
 import com.example.archv1.domain.model.ResponseResult
 import retrofit2.Response
 
@@ -10,3 +12,5 @@ fun <T: Any> Response<T>.responseResult() : ResponseResult<T> {
         ResponseResult.Failure("HttpCode: ${this.code()}")
     }
 }
+
+fun SharedPrefs.getContext() = MainApplication.getContext()
