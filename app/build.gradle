@@ -90,4 +90,13 @@ dependencies {
     testImplementation "io.mockk:mockk:$mockk_version"
     testImplementation "android.arch.core:core-testing:1.1.1"
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    /** Room dependence **/
+    def room_version = "2.2.5"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    /** Allows inspect database room by type "chrome://inspect" in Google Chrome**/
+    implementation 'com.facebook.stetho:stetho:1.5.1'
 }

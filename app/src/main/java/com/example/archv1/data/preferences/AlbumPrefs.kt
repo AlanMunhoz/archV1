@@ -6,7 +6,7 @@ import com.example.archv1.domain.model.Album
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class SharedPrefs(private val mContext: Context?) {
+class AlbumPrefs(private val mContext: Context?) {
 
     companion object AccessKey {
         private const val FILE_ALBUM_LIST = "file_album_list"
@@ -30,7 +30,7 @@ class SharedPrefs(private val mContext: Context?) {
         return Gson().fromJson<ArrayList<Album>>(json, listType)
     }
 
-    fun saveAlbum(album: Album) {
+    fun insert(album: Album) {
 //        getContext()?.let { context ->
         mContext?.let { context ->
             restoreAlbumList(context)?.let { list ->

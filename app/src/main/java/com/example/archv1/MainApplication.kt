@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.archv1.di.dataModule
 import com.example.archv1.di.domainModule
 import com.example.archv1.di.presentationModule
+import com.facebook.stetho.Stetho
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -24,5 +25,7 @@ class MainApplication : Application() {
             androidContext(this@MainApplication)
             modules(listOf(presentationModule, domainModule, dataModule))
         }
+
+        Stetho.initializeWithDefaults(this)
     }
 }
