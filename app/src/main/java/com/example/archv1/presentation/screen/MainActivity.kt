@@ -1,5 +1,7 @@
 package com.example.archv1.presentation.screen
 
+import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -30,6 +32,14 @@ class MainActivity : AppCompatActivity() {
                 is ResponseResult.Failure -> showError(responseResult.message)
             }
         })
+
+        viewBinding.descriptionView.setShowingLine(3)
+        viewBinding.descriptionView.addShowMoreText("Continue")
+        viewBinding.descriptionView.addShowLessText("Less")
+        viewBinding.descriptionView.setShowMoreColor(Color.RED) // or other color
+        viewBinding.descriptionView.setShowLessTextColor(Color.RED) // or other color
+
+        startActivity(Intent(this, TextFieldsActivity::class.java))
     }
 
     private fun showResult(result: String, page: Int) {
