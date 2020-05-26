@@ -4,8 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.archv1.domain.model.Album
 import com.example.archv1.domain.model.ResponseResult
-import com.example.archv1.domain.usecase.GetAlbum
-import com.example.archv1.domain.usecase.GetAlbumResponse
+import com.example.archv1.domain.usecase.GetAlbumUseCase
+import com.example.archv1.domain.usecase.GetAlbumResponseUseCase
 import com.example.archv1.presentation.viewModel.AlbumViewModel
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
@@ -22,9 +22,9 @@ class AlbumViewModelTest {
     var instantExecutorRule = InstantTaskExecutorRule()
 
     @MockK
-    val getAlbumUseCase = mockk<GetAlbum>()
+    val getAlbumUseCase = mockk<GetAlbumUseCase>()
     @MockK
-    val getAlbumResponseUseCase = mockk<GetAlbumResponse>()
+    val getAlbumResponseUseCase = mockk<GetAlbumResponseUseCase>()
     @MockK(relaxed = true)
     lateinit var albumObserver: Observer<ResponseResult<Album>>
 

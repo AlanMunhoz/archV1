@@ -9,9 +9,7 @@ import com.example.archv1.data.repository.AlbumRepositoryImpl
 import com.example.archv1.data.room.AlbumDatabase
 import com.example.archv1.data.room.AlbumDatabase.Companion.albumProvider
 import com.example.archv1.domain.repository.AlbumRepository
-import com.example.archv1.presentation.viewModel.AlbumViewModel
 import org.koin.android.ext.koin.androidApplication
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val dataModule = module {
@@ -23,5 +21,4 @@ val dataModule = module {
     single { albumProvider(androidApplication()) }
     single { get<AlbumDatabase>().albumDao }
     single<AlbumRepository> { AlbumRepositoryImpl(get(), get(), get()) }
-    viewModel { AlbumViewModel(get(), get()) }
 }

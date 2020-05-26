@@ -3,14 +3,14 @@ package com.example.archv1.presentation.viewModel
 import androidx.lifecycle.*
 import com.example.archv1.domain.model.Album
 import com.example.archv1.domain.model.ResponseResult
-import com.example.archv1.domain.usecase.GetAlbum
-import com.example.archv1.domain.usecase.GetAlbumResponse
+import com.example.archv1.domain.usecase.GetAlbumUseCase
+import com.example.archv1.domain.usecase.GetAlbumResponseUseCase
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class AlbumViewModel(
-    private val getAlbum: GetAlbum,
-    private val getAlbumResponse: GetAlbumResponse
+    private val getAlbumUseCase: GetAlbumUseCase,
+    private val getAlbumResponseUseCase: GetAlbumResponseUseCase
 ) : ViewModel() {
 
     private var page: Int = 1
@@ -28,7 +28,7 @@ class AlbumViewModel(
         viewModelScope.launch {
             try {
                 _requestInProgress.postValue(true)
-                _album.postValue(getAlbumResponse(albumId))
+                _album.postValue(getAlbumResponseUseCase(albumId))
                 page++
             } catch (e: Exception) {
                 _album.postValue(ResponseResult.Failure("ExceptionMessage: ${e.message}"))
@@ -41,7 +41,7 @@ class AlbumViewModel(
 
     /** Retrofit has its own custom dispatchers **/
     fun getSingleAlbum(albumId: Int) = liveData {
-        val receivedAlbum = getAlbum(albumId)
+        val receivedAlbum = getAlbumUseCase(albumId)
         emit(receivedAlbum)
     }
 
