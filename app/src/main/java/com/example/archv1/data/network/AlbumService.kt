@@ -12,4 +12,8 @@ interface AlbumService {
 
     @GET("/albums/{id}")
     suspend fun getAlbumResponse(@Path(value = "id") albumId: Int): Response<Album>
+
+    @GET("/albums")
+    suspend fun getAlbumListResponse(): Response<List<Album>>
+
 }

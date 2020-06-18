@@ -5,6 +5,7 @@ import com.example.archv1.data.preferences.AlbumPrefs
 import com.example.archv1.data.room.AlbumEntity
 import com.example.archv1.domain.model.Album
 import com.example.archv1.domain.model.ResponseResult
+import com.example.archv1.presentation.model.AlbumView
 import retrofit2.Response
 
 fun <T: Any> Response<T>.responseResult() : ResponseResult<T> {
@@ -28,4 +29,10 @@ fun AlbumEntity.toAlbum() = Album(
     id = this.id,
     title = this.title,
     userId = this.userId
+)
+
+fun Album.toAlbumView() = AlbumView(
+    title = this.title,
+    userId = this.userId.toString(),
+    id = this.id.toString()
 )

@@ -37,5 +37,26 @@ class AlbumRepositoryImpl(
             return response
         }
     }
+
+    override suspend fun getAlbumListResponse(): ResponseResult<List<Album>> {
+        val list = albumDao.getAll()
+        return if(list.isNotEmpty()) {
+            Log.d(LOG_TAG, "Return from local [ROOM ${list.size}] [PREFS ${albumPrefs.getAll()?.size}]")
+            ResponseResult.Success(list.map { it.toAlbum() })
+        } else {
+            val response = retrofitService.getAlbumListResponse().responseResult()
+            if (response is ResponseResult.Success) {
+
+                val responseFiltered = ResponseResult.Success(response.data.filter { it.id < 50 })
+
+                albumPrefs.saveAlbumList(ArrayList(responseFiltered.data))
+                albumDao.setList(responseFiltered.data.map{ it.toAlbumEntity() })
+                Log.d(LOG_TAG, "Return from api [${responseFiltered.data}]")
+                responseFiltered
+            } else {
+                response
+            }
+        }
+    }
 }
 
