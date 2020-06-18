@@ -32,14 +32,14 @@ class AlbumPrefs(private val mContext: Context) {
 
     fun insert(album: Album) {
 //        getContext()?.let { context ->
-            restoreAlbumList()?.let { list ->
-                if(list.firstOrNull { it.id == album.id } == null) {
-                    list.add(album)
-                    saveAlbumList(list)
-                }
-            } ?: run {
-                saveAlbumList(arrayListOf(album))
+        restoreAlbumList()?.let { list ->
+            if (list.firstOrNull { it.id == album.id } == null) {
+                list.add(album)
+                saveAlbumList(list)
             }
+        } ?: run {
+            saveAlbumList(arrayListOf(album))
+        }
 
     }
 

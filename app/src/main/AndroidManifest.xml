@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.screen.TextFieldsActivity"></activity>
+        <activity android:name=".presentation.screen.LoginActivity"></activity>
 
     </application>
 

@@ -19,6 +19,7 @@ class AlbumRepositoryImpl(
 
     companion object {
         val LOG_TAG = AlbumRepositoryImpl::class.java.name.split(".").lastOrNull()?.toString()
+        const val LIST_MAX_QTY_REQUEST = 50
     }
 
     override suspend fun getAlbum(albumId: Int) = retrofitService.getAlbum(albumId)
@@ -40,17 +41,19 @@ class AlbumRepositoryImpl(
 
     override suspend fun getAlbumListResponse(): ResponseResult<List<Album>> {
         val list = albumDao.getAll()
-        return if(list.isNotEmpty()) {
+        return if (list.isNotEmpty()) {
             Log.d(LOG_TAG, "Return from local [ROOM ${list.size}] [PREFS ${albumPrefs.getAll()?.size}]")
             ResponseResult.Success(list.map { it.toAlbum() })
         } else {
             val response = retrofitService.getAlbumListResponse().responseResult()
             if (response is ResponseResult.Success) {
 
-                val responseFiltered = ResponseResult.Success(response.data.filter { it.id < 50 })
+                /** Limit of items quantity in request, allowing new single requests afterwards **/
+                val responseFiltered =
+                    ResponseResult.Success(response.data.filter { it.id < LIST_MAX_QTY_REQUEST })
 
                 albumPrefs.saveAlbumList(ArrayList(responseFiltered.data))
-                albumDao.setList(responseFiltered.data.map{ it.toAlbumEntity() })
+                albumDao.setList(responseFiltered.data.map { it.toAlbumEntity() })
                 Log.d(LOG_TAG, "Return from api [${responseFiltered.data}]")
                 responseFiltered
             } else {

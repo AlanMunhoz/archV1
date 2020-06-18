@@ -8,7 +8,7 @@ import com.example.archv1.domain.model.ResponseResult
 import com.example.archv1.presentation.model.AlbumView
 import retrofit2.Response
 
-fun <T: Any> Response<T>.responseResult() : ResponseResult<T> {
+fun <T : Any> Response<T>.responseResult(): ResponseResult<T> {
     return this.body()?.let {
         ResponseResult.Success(it)
     } ?: run {

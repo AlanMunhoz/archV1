@@ -17,13 +17,13 @@ class RetrofitProvider {
         private const val WRITE_TIMEOUT = 5000L
         private val TIME_UNIT = TimeUnit.MILLISECONDS
 
-        fun provideLoginInterceptor() : HttpLoggingInterceptor {
+        fun provideLoginInterceptor(): HttpLoggingInterceptor {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
             return logging
         }
 
-        fun provideHttpClient(loggingInterceptor : HttpLoggingInterceptor) : OkHttpClient.Builder {
+        fun provideHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient.Builder {
             val httpClient = OkHttpClient.Builder()
             httpClient.apply {
                 connectTimeout(
@@ -43,13 +43,13 @@ class RetrofitProvider {
             return httpClient
         }
 
-        fun providePlaceHolderApi(httpClient: OkHttpClient.Builder) : Retrofit = Retrofit.Builder()
+        fun providePlaceHolderApi(httpClient: OkHttpClient.Builder): Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .client(httpClient.build())
             .build()
 
-        fun provideAlbumService(retrofit: Retrofit) : AlbumService = retrofit
+        fun provideAlbumService(retrofit: Retrofit): AlbumService = retrofit
             .create(AlbumService::class.java)
     }
 }

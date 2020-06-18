@@ -12,7 +12,7 @@ import org.koin.core.context.startKoin
 class MainApplication : Application() {
 
     companion object {
-        var mainApplication : Application? = null
+        var mainApplication: Application? = null
         fun getContext() = mainApplication?.applicationContext
     }
 

@@ -6,4 +6,11 @@
     <string name="login_button">Login</string>
     <string name="logo">best4u</string>
     <string name="register">No account? Register!</string>
+
+    <string name="album_description">Album info: Id: %1$d, UserId: %2$d, Title: %3$s</string>
+    <plurals name="album_download_list">
+        <item quantity="one">You have been loaded &lt;b>%1$d album&lt;/b></item>
+        <item quantity="other">You have been loaded &lt;b>%1$d albuns&lt;/b></item>
+    </plurals>
+
 </resources>
