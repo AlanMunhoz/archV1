@@ -20,17 +20,16 @@ abstract class AlbumDatabase : RoomDatabase() {
 
         fun albumProvider(context: Context): AlbumDatabase =
             Room.databaseBuilder(context, AlbumDatabase::class.java, DATABASE_NAME)
-                //.addMigrations(MIGRATION_1_2)
-                //.fallbackToDestructiveMigration()
+                // .addMigrations(MIGRATION_1_2)
+                // .fallbackToDestructiveMigration()
                 .build()
 
         private val MIGRATION_1_2: Migration = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                //TODO: For an eventual change in the database table, increment database version and:
+                // TODO: For an eventual change in the database table, increment database version and:
                 // 1) put the migration code here adding this function in ".addMigrations".
                 // 2) if the previous data in database don't need be saved, just add ".fallbackToDestructiveMigration"
             }
         }
     }
 }
-

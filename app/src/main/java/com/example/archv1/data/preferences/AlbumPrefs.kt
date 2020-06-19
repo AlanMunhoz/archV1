@@ -40,7 +40,6 @@ class AlbumPrefs(private val mContext: Context) {
         } ?: run {
             saveAlbumList(arrayListOf(album))
         }
-
     }
 
     fun getAlbum(albumId: Int): Album? {
@@ -51,5 +50,4 @@ class AlbumPrefs(private val mContext: Context) {
     }
 
     fun getAll() = restoreAlbumList()
-
 }

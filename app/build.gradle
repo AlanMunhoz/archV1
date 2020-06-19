@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply from: "$project.rootDir/spotless.gradle"
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"

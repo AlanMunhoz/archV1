@@ -36,4 +36,3 @@ class AlbumViewHolder(parent: ViewGroup, private val cardClickCallback: (String)
         }
     }
 }
-

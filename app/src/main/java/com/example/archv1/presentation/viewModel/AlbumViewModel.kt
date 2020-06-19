@@ -1,13 +1,17 @@
 package com.example.archv1.presentation.viewModel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.example.archv1.domain.model.Album
 import com.example.archv1.domain.model.ResponseResult
 import com.example.archv1.domain.usecase.GetAlbumListResponseUseCase
-import com.example.archv1.domain.usecase.GetAlbumUseCase
 import com.example.archv1.domain.usecase.GetAlbumResponseUseCase
-import kotlinx.coroutines.launch
+import com.example.archv1.domain.usecase.GetAlbumUseCase
 import java.lang.Exception
+import kotlinx.coroutines.launch
 
 class AlbumViewModel(
     private val getAlbumUseCase: GetAlbumUseCase,
@@ -66,5 +70,4 @@ class AlbumViewModel(
         val receivedAlbum = getAlbumUseCase(albumId)
         emit(receivedAlbum)
     }
-
 }

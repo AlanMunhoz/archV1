@@ -15,5 +15,4 @@ interface AlbumService {
 
     @GET("/albums")
     suspend fun getAlbumListResponse(): Response<List<Album>>
-
 }

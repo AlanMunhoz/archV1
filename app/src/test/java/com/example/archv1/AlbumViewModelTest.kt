@@ -4,11 +4,16 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.archv1.domain.model.Album
 import com.example.archv1.domain.model.ResponseResult
-import com.example.archv1.domain.usecase.GetAlbumUseCase
+import com.example.archv1.domain.usecase.GetAlbumListResponseUseCase
 import com.example.archv1.domain.usecase.GetAlbumResponseUseCase
+import com.example.archv1.domain.usecase.GetAlbumUseCase
 import com.example.archv1.presentation.viewModel.AlbumViewModel
-import io.mockk.*
+import io.mockk.MockKAnnotations
+import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
+import io.mockk.verify
+import io.mockk.verifyOrder
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -25,6 +30,8 @@ class AlbumViewModelTest {
     val getAlbumUseCase = mockk<GetAlbumUseCase>()
     @MockK
     val getAlbumResponseUseCase = mockk<GetAlbumResponseUseCase>()
+    @MockK
+    val getAlbumListResponseUseCase = mockk<GetAlbumListResponseUseCase>()
     @MockK(relaxed = true)
     lateinit var albumObserver: Observer<ResponseResult<Album>>
 
@@ -33,7 +40,7 @@ class AlbumViewModelTest {
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        viewModel = AlbumViewModel(getAlbumUseCase, getAlbumResponseUseCase)
+        viewModel = AlbumViewModel(getAlbumUseCase, getAlbumResponseUseCase, getAlbumListResponseUseCase)
     }
 
     @Test

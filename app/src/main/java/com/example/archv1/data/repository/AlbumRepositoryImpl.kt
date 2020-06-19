@@ -26,7 +26,7 @@ class AlbumRepositoryImpl(
 
     override suspend fun getAlbumResponse(albumId: Int): ResponseResult<Album> {
         albumDao.getAlbum(albumId)?.let {
-            Log.d(LOG_TAG, "Return from local [ROOM ${it}] [PREFS ${albumPrefs.getAlbum(albumId)}]")
+            Log.d(LOG_TAG, "Return from local [ROOM $it] [PREFS ${albumPrefs.getAlbum(albumId)}]")
             return ResponseResult.Success(it.toAlbum())
         } ?: run {
             val response = retrofitService.getAlbumResponse(albumId).responseResult()
@@ -62,4 +62,3 @@ class AlbumRepositoryImpl(
         }
     }
 }
-

@@ -1,18 +1,18 @@
 package com.example.archv1.presentation.screen
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.archv1.R
 import com.example.archv1.data.util.toAlbumView
-import com.example.archv1.domain.model.ResponseResult
 import com.example.archv1.databinding.ActivityMainBinding
 import com.example.archv1.domain.model.Album
+import com.example.archv1.domain.model.ResponseResult
 import com.example.archv1.presentation.adapter.AlbumAdapter2
 import com.example.archv1.presentation.viewModel.AlbumViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewBinding.descriptionView.apply {
-           setShowingLine(3)
+            setShowingLine(3)
             addShowMoreText("Continue")
             addShowLessText("Less")
             setShowMoreColor(Color.RED) // or other color

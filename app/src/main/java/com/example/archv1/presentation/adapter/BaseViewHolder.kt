@@ -11,15 +11,15 @@ abstract class BaseViewHolder<T>(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
 
     private val shimmerFrameLayout by lazy { itemView.findViewById<ShimmerFrameLayout>(R.id.flShimmer) }
-    private var shimmerViewList : List<View>? = null
+    private var shimmerViewList: List<View>? = null
 
     abstract fun bindItem(item: T?)
 
-    protected fun setShimmerViews(views : List<View>) {
+    protected fun setShimmerViews(views: List<View>) {
         shimmerViewList = views
     }
 
-    fun bindView(item:T?, isShimmer: Boolean) {
+    fun bindView(item: T?, isShimmer: Boolean) {
         if (isShimmer) {
             startShimmer()
         } else {
