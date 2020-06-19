@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
     private fun initLayout() {
         viewBinding.rvList.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = AlbumAdapter2() { string ->
+            adapter = AlbumAdapter2(context) { string ->
                 Toast.makeText(context, "Card: $string", Toast.LENGTH_LONG).show()
             }
         }

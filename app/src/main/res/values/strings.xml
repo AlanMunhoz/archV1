@@ -8,6 +8,8 @@
     <string name="register">No account? Register!</string>
     <string name="request_button">Request</string>
     <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="shimmerViewTag">ShimmerTag</string>
+    <string name="content_description_image_album_card">Album image</string>
 
     <string name="album_description">Album info: Id: %1$d, UserId: %2$d, Title: %3$s</string>
     <plurals name="album_download_list">

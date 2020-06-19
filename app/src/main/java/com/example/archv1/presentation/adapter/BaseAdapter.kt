@@ -3,33 +3,34 @@ package com.example.archv1.presentation.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
+abstract class BaseAdapter<MODEL> : RecyclerView.Adapter<BaseViewHolder<MODEL>>() {
 
-    private var isShimmer = true
-    private var dataList = ArrayList<T>()
+    private val isShimmer: Boolean
+        get() = dataList.isEmpty()
+
+    private var dataList = ArrayList<MODEL>()
+
     abstract var shimmerCellsQuantity: Int
 
-    abstract fun onCreateVH(parent: ViewGroup, viewType: Int): BaseViewHolder<T>
+    abstract fun onCreateVH(parent: ViewGroup, viewType: Int): BaseViewHolder<MODEL>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = onCreateVH(parent, viewType)
 
-    override fun getItemCount() = if (isShimmer) shimmerCellsQuantity else dataList.size
-
-    override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
-        holder.bindView(getPosition(position), isShimmer)
+    override fun onBindViewHolder(holder: BaseViewHolder<MODEL>, position: Int) {
+        holder.bindView(getItem(position), isShimmer)
     }
 
-    private fun getPosition(position: Int) = if (isShimmer) null else dataList[position]
+    override fun getItemCount() = if (isShimmer) shimmerCellsQuantity else dataList.size
 
-    fun setList(list: List<T>) {
-        isShimmer = false
+    private fun getItem(position: Int) = if (isShimmer) null else dataList[position]
+
+    fun setList(list: List<MODEL>) {
         dataList = ArrayList(list)
         notifyDataSetChanged()
     }
 
-    fun addList(item: T) {
-        isShimmer = false
+    fun addList(item: MODEL) {
         dataList.add(item)
-        notifyDataSetChanged()
+        notifyItemInserted(dataList.size - 1)
     }
 }
