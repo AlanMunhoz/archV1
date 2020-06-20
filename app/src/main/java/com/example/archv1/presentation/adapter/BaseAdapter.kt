@@ -31,6 +31,6 @@ abstract class BaseAdapter<MODEL> : RecyclerView.Adapter<BaseViewHolder<MODEL>>(
 
     fun addList(item: MODEL) {
         dataList.add(item)
-        notifyItemInserted(dataList.size - 1)
+        notifyItemInserted(dataList.lastIndex)
     }
 }

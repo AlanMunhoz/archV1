@@ -1,17 +1,8 @@
 package com.example.archv1.presentation.adapter
 
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.example.archv1.R
-import com.example.archv1.presentation.model.AlbumView
-
-//class AlbumAdapter(
+// class AlbumAdapter(
 //    private val cardClickCallback: (String) -> Unit
-//) : RecyclerView.Adapter<ItemViewHolder>() {
+// ) : RecyclerView.Adapter<ItemViewHolder>() {
 //
 //    private var albumList = ArrayList<AlbumView>()
 //    private var isShimmer = albumList.isEmpty()
@@ -51,9 +42,9 @@ import com.example.archv1.presentation.model.AlbumView
 //    companion object {
 //        private const val SHIMMER_CELLS = 10
 //    }
-//}
+// }
 //
-//class ItemViewHolder(private val viewBinding: AlbumItemBinding, private val colorShimmer: Int) :
+// class ItemViewHolder(private val viewBinding: AlbumItemBinding, private val colorShimmer: Int) :
 //    RecyclerView.ViewHolder(viewBinding.root) {
 //
 //    fun bindView(entity: AlbumView?, isShimmer: Boolean, cardClickCallback: (String) -> Unit) {
@@ -89,4 +80,4 @@ import com.example.archv1.presentation.model.AlbumView
 //            ivAlbum.background = null
 //        }
 //    }
-//}
+// }

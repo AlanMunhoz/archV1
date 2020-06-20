@@ -1,18 +1,21 @@
 package com.example.archv1.presentation.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.archv1.R
 import com.facebook.shimmer.ShimmerFrameLayout
 
-abstract class BaseViewHolder<MODEL>(context: Context, itemView: View) :
-    RecyclerView.ViewHolder(itemView) {
+abstract class BaseViewHolder<MODEL>(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    private val colorShimmer by lazy {
+        ContextCompat.getColor(itemView.context, R.color.color_shimmer)
+    }
 
     private val shimmerFrameLayout by lazy {
-        itemView.findViewWithTag<ShimmerFrameLayout>(context.getString(R.string.shimmerViewTag))
+        itemView.findViewWithTag<ShimmerFrameLayout>(itemView.context.getString(R.string.shimmerViewTag))
     }
 
     private var shimmerViewList: List<View>? = null
@@ -34,6 +37,7 @@ abstract class BaseViewHolder<MODEL>(context: Context, itemView: View) :
 
     private fun startShimmer() {
         shimmerFrameLayout?.startShimmer()
+        shimmerViewList?.forEach { it.setBackgroundColor(colorShimmer) }
     }
 
     private fun stopShimmer() {
