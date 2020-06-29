@@ -4,6 +4,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.archv1.R
+import com.example.archv1.presentation.adapter.base.BaseAdapter
+import com.example.archv1.presentation.adapter.base.BaseViewHolder
 import com.example.archv1.presentation.model.AlbumView
 
 class AlbumAdapter2(private val cardClickCallback: (String) -> Unit) : BaseAdapter<AlbumView>() {
@@ -11,11 +13,11 @@ class AlbumAdapter2(private val cardClickCallback: (String) -> Unit) : BaseAdapt
     override var shimmerCellsQuantity: Int = 7
 
     override fun onCreateVH(parent: ViewGroup, viewType: Int): BaseViewHolder<AlbumView> {
-        return AlbumViewHolder(parent, cardClickCallback)
+        return AlbumViewHolder2(parent, cardClickCallback)
     }
 }
 
-class AlbumViewHolder(parent: ViewGroup, private val cardClickCallback: (String) -> Unit) :
+class AlbumViewHolder2(parent: ViewGroup, private val cardClickCallback: (String) -> Unit) :
     BaseViewHolder<AlbumView>(inflate(parent, R.layout.album_item)) {
 
     private val albumImage by lazy { itemView.findViewById<ImageView>(R.id.ivAlbum) }

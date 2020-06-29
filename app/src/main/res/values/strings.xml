@@ -4,6 +4,7 @@
     <string name="name_hint">name</string>
     <string name="pass_hint">password</string>
     <string name="login_button">Login</string>
+    <string name="diff_button">diff_button</string>
     <string name="logo">best4u</string>
     <string name="register">No account? Register!</string>
     <string name="request_button">Request</string>

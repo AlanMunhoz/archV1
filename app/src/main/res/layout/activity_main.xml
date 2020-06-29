@@ -76,9 +76,20 @@
             android:onClick="@{() -> activity.goToLoginActivity()}"
             android:text="@string/login_button"
             app:layout_constraintBottom_toBottomOf="@+id/btRequest"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btDiffUtils"
             app:layout_constraintStart_toEndOf="@+id/btRequest"
             app:layout_constraintTop_toTopOf="@+id/btRequest" />
+
+        <Button
+            android:id="@+id/btDiffUtils"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> activity.goToDiffActivity()}"
+            android:text="@string/diff_button"
+            app:layout_constraintBottom_toBottomOf="@+id/btLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btLogin"
+            app:layout_constraintTop_toTopOf="@+id/btLogin" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvList"

@@ -1,4 +1,4 @@
-package com.example.archv1.presentation.adapter
+package com.example.archv1.presentation.adapter.base
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
