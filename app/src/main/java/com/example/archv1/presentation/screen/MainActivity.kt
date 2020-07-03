@@ -15,6 +15,7 @@ import com.example.archv1.domain.model.Album
 import com.example.archv1.domain.model.ResponseResult
 import com.example.archv1.presentation.adapter.AlbumAdapter2
 import com.example.archv1.presentation.viewModel.AlbumViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -99,5 +100,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         viewModel.loadAlbums()
+
+        tvShowMore.setTextView(getString(R.string.dummy_text))
     }
 }
