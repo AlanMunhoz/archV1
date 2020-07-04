@@ -19,36 +19,44 @@ import com.example.archv1.R
 class ExpandableTextView(context: Context, attrs: AttributeSet?) :
     androidx.appcompat.widget.AppCompatTextView(context, attrs) {
 
-    private val TRIM_LENGTH = 120
-    private val SHOW_MORE = context.getString(R.string.show_more)
-    private val SHOW_LESS = context.getString(R.string.show_less)
-    private var originalText: CharSequence
+    private val trimLength = 120
+    private val showMore = context.getString(R.string.show_more)
+    private val showLess = context.getString(R.string.show_less)
     private var isExpanded = false
-    private var spannableStringMore: SpannableString
-    private var spannableStringLess: SpannableString
+    private lateinit var originalText: CharSequence
+    private lateinit var spannableStringMore: SpannableString
+    private lateinit var spannableStringLess: SpannableString
 
     private val isExpandable: Boolean
-        get() = originalText.length > TRIM_LENGTH
+        get() = originalText.length > trimLength
 
     private val fullText: CharSequence
         get() = if (isExpandable) {
-            SpannableStringBuilder(originalText).append("\n$SHOW_LESS")
+            SpannableStringBuilder(originalText).append("\n$showLess")
         } else {
             originalText
         }
 
     private val trimmedText: CharSequence
         get() = if (isExpandable) {
-            SpannableStringBuilder(originalText, 0, TRIM_LENGTH).append("\n$SHOW_MORE")
+            SpannableStringBuilder(originalText, 0, trimLength).append("\n$showMore")
         } else {
             originalText
         }
 
+    private val clickableSpan = object : ClickableSpan() {
+        override fun onClick(view: View) {
+            reloadTextView()
+        }
+
+        override fun updateDrawState(ds: TextPaint) {
+            super.updateDrawState(ds)
+            ds.isUnderlineText = false
+        }
+    }
+
     init {
-        originalText = text
-        spannableStringMore = buildSpannableString(trimmedText, true)
-        spannableStringLess = buildSpannableString(fullText, false)
-        reloadTextView()
+        setTextView(text)
     }
 
     fun setTextView(text: CharSequence) {
@@ -61,25 +69,15 @@ class ExpandableTextView(context: Context, attrs: AttributeSet?) :
 
     private fun reloadTextView() {
         val spannableString = if (isExpanded) spannableStringLess else spannableStringMore
-        setText(spannableString, BufferType.SPANNABLE)
         isExpanded = isExpanded.not()
+        setText(spannableString, BufferType.SPANNABLE)
     }
 
     private fun buildSpannableString(text: CharSequence, isTrimmed: Boolean): SpannableString {
         return SpannableString(text).apply {
             if (isExpandable) {
-                val link = if (isTrimmed) SHOW_MORE else SHOW_LESS
+                val link = if (isTrimmed) showMore else showLess
                 val startLink = text.length - link.length
-                val clickableSpan = object : ClickableSpan() {
-                    override fun onClick(view: View) {
-                        reloadTextView()
-                    }
-
-                    override fun updateDrawState(ds: TextPaint) {
-                        super.updateDrawState(ds)
-                        ds.isUnderlineText = false
-                    }
-                }
                 setSpan(
                     clickableSpan,
                     startLink,
