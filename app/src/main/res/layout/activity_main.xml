@@ -126,10 +126,25 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="@string/dummy_text"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/search_guide"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <com.example.archv1.data.util.TimelineView
+            android:id="@+id/search_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:fill_color="@color/green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:outline_width="3dp"
+            app:padding_horizontal="8dp"
+            app:steps_quantity="4"
+            app:text_color_selected="@color/white"
+            app:text_color_unselected="@color/gray_300" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

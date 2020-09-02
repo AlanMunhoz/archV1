@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TimelineView">
+        <attr name="steps_quantity" format="integer" />
+        <attr name="padding_horizontal" format="dimension" />
+        <attr name="outline_width" format="dimension" />
+        <attr name="fill_color" format="color" />
+        <attr name="text_color_unselected" format="color" />
+        <attr name="text_color_selected" format="color" />
+    </declare-styleable>
+
+</resources>

@@ -102,5 +102,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.loadAlbums()
 
         tvShowMore.setTextView(getString(R.string.dummy_text))
+
+        search_guide.setCurrentStep(0)
     }
 }
